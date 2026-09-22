@@ -1,10 +1,8 @@
-import './App.css'
-
 function App() {
 
     return (
       <div>
-        <h1>Synar</h1>
+        <h1 className="text-3xl font-bold text-blue-600">Synar</h1>
         <p>Bienvenido, Luca</p>
         <div>
           <div>Ventas: $0</div>
