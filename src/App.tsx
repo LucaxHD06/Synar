@@ -1,9 +1,12 @@
+import { Button } from '@/components/ui/button'
+
 function App() {
 
     return (
       <div>
         <h1 className="text-3xl font-bold text-blue-600">Synar</h1>
         <p>Bienvenido, Luca</p>
+        <Button>Nueva venta</Button>
         <div>
           <div>Ventas: $0</div>
           <div>Productos: 0</div>
