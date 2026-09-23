@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 
 function App() {
 
@@ -7,10 +8,32 @@ function App() {
         <h1 className="text-3xl font-bold text-blue-600">Synar</h1>
         <p>Bienvenido, Luca</p>
         <Button>Nueva venta</Button>
-        <div>
-          <div>Ventas: $0</div>
-          <div>Productos: 0</div>
-          <div>Stock: 0</div>
+
+        <div className="flex gap-4 ">
+        <Card className='flex-1 min-w-[160px]'>
+          <CardHeader>
+            <CardTitle>Ventas</CardTitle>
+          </CardHeader>
+          <CardContent>
+            $0
+          </CardContent>
+        </Card>
+        <Card className='flex-1 min-w-[160px]'>
+          <CardHeader>
+            <CardTitle>Productos</CardTitle>
+          </CardHeader>
+          <CardContent>
+            0
+          </CardContent>
+        </Card>
+        <Card className='flex-1 min-w-[160px]'>
+          <CardHeader>
+            <CardTitle>Stock</CardTitle>
+          </CardHeader>
+          <CardContent>
+            0
+          </CardContent>
+        </Card>
         </div>
       </div>
     )
