@@ -5,11 +5,21 @@ import type { Product } from '../electron/db/schema'
 
 function App() {
   const [products, setProducts] = useState<Product[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    window.api.getProducts().then((data) => {
-      setProducts(data)
-    })
+    window.api.getProducts()
+      .then((data) => {
+        setProducts(data)
+      })
+      .catch((err) => {
+        console.error(err)
+        setError('No se pudieron cargar los productos')
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
     return (
     <div className="flex">
@@ -48,10 +58,13 @@ function App() {
           </div>
             <div className='mt-6'>
               <h2 className='text-xl font-bold'>Productos</h2>
-              {products.map((product) => (
-              <div key={product.id}>
-                {product.name} - ${product.price}
-              </div> ))}
+              {loading && <p>Cargando productos...</p> }
+              {error && <p className='text-red-600'>{error}</p> }
+              {!loading && !error && products.map((product) => (
+                <div key={product.id}>
+                  {product.name} - ${product.price}
+                </div>
+              ))}
           </div>
         </div>
       </main>
