@@ -1,9 +1,10 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { useState, useEffect } from 'react'
+import type { Product } from '../electron/db/schema'
 
 function App() {
-  const [products, setProducts] = useState<any[]>([])
+  const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
     window.api.getProducts().then((data) => {
