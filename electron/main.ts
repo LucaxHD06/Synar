@@ -10,7 +10,9 @@ function createWindow() {
         width: 1200,
         height: 800,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'), 
+            preload: path.join(__dirname, 'preload.js'),
+            nodeIntegration: false,
+            contextIsolation: true
         },
     })
 
@@ -18,8 +20,13 @@ function createWindow() {
 }
 
 ipcMain.handle('get-products', async () => {
-    const db = getDb()
-    return await db.select().from(products)
+    try {
+        const db = getDb()
+        return await db.select().from(products)
+    } catch (error) {
+        console.error('Error al obtener productos:', error)
+        return []
+    }
 })
 
 app.whenReady().then(() => {
