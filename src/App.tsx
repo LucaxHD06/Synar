@@ -1,8 +1,15 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { useState, useEffect } from 'react'
 
 function App() {
+  const [products, setProducts] = useState<any[]>([])
 
+  useEffect(() => {
+    window.api.getProducts().then((data) => {
+      setProducts(data)
+    })
+  }, [])
     return (
     <div className="flex">
       <aside className="w-56 h-screen bg-black text-white p-4">Synar</aside>
@@ -37,6 +44,13 @@ function App() {
               0
             </CardContent>
           </Card>
+          </div>
+            <div className='mt-6'>
+              <h2 className='text-xl font-bold'>Productos</h2>
+              {products.map((product) => (
+              <div key={product.id}>
+                {product.name} - ${product.price}
+              </div> ))}
           </div>
         </div>
       </main>
