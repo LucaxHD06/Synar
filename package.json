@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "electron:build": "rm -rf dist-electron && tsc -p tsconfig.electron.json && echo '{\"type\":\"commonjs\"}' > dist-electron/package.json && cp -r electron/db/migrations dist-electron/db/migrations",
-    "electron:dev": "npm run electron:build && electron dist-electron/main.js"
+    "electron:dev": "npm run electron:build && NODE_ENV=development electron dist-electron/main.js"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.3.0",

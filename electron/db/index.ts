@@ -9,7 +9,9 @@ let dbInstance: ReturnType<typeof drizzle> | null = null
 
 export function getDb() {
     if (!dbInstance) {
-        const dbPath = path.join(app.getPath('userData'), 'synar.db')
+        const dbPath = process.env.NODE_ENV === 'development'
+            ? path.join(process.cwd(), 'dev.db')
+            : path.join(app.getPath('userData'), 'synar.db')
         const sqlite = new Database(dbPath)
         dbInstance = drizzle(sqlite, { schema })
         migrate(dbInstance, { migrationsFolder: path.join(__dirname, 'migrations') })
