@@ -29,6 +29,17 @@ ipcMain.handle('get-products', async () => {
     }
 })
 
+ipcMain.handle('create-product', async (_event, newProduct) => {
+    try {
+        const db = getDb ()
+        await db.insert(products).values(newProduct)
+        return {success: true}
+    } catch (error) {
+        console.error('Error al crear el producto', error)
+        return {success: false}
+    }
+})
+
 app.whenReady().then(() => {
     createWindow()
 })
